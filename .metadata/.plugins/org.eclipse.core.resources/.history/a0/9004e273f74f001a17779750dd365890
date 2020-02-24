@@ -1,0 +1,55 @@
+package Estados;
+
+import java.awt.Graphics;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
+import Graficos.Assets;
+import ObjetosdeJuego.Constantes;
+import UI.Action;
+import UI.Boton;
+import io.ScoreData;
+
+public class ScoreState extends EstadoBase{
+	
+	private Boton returnBoton;
+	private PriorityQueue<ScoreData>puntuacionesAltas;
+	private Comparator<ScoreData>comparadorPuntuaciones;
+	private ScoreData[]auxArray;
+	
+	public ScoreState() {
+		returnBoton = new Boton(
+				Assets.greyBtn,
+				Assets.blueBtn,
+				Assets.greyBtn.getHeight(),
+				Constantes.HEIGHT - Assets.greyBtn.getHeight() * 2,
+				"RETURN",
+				new Action() {
+					@Override
+					public void doAction() {
+						EstadoBase.changeState(new MenuState());
+					}
+				});
+		
+		comparadorPuntuaciones = new Comparator<ScoreData>() {
+			@Override
+			public int compare(ScoreData e1, ScoreData e2) {
+				return e1.getPuntuacion() < e2.getPuntuacion() ? -1:e1.getPuntuacion() > e2.getPuntuacion() ? 1 : 0;
+			}
+		};
+		
+	}
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

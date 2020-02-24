@@ -1,0 +1,150 @@
+package Principal;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+
+import javax.swing.JFrame;
+
+import Estados.EstadoBase;
+import Estados.MenuState;
+import Graficos.Assets;
+import Input.KeyBoard;
+import Input.MouseInput;
+import ObjetosdeJuego.Constantes;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author migue
+ */
+public class Ventana extends JFrame implements Runnable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Canvas canvas; private Thread thread;
+    private final int nanosegundo = 1000000000;
+    private boolean running=false;
+    private BufferStrategy bs; private Graphics g;
+    private final int FPS = 60;
+    private double TARGETTIME = nanosegundo/FPS;
+    private double delta = 0;
+    private int AVERAGEFPS = FPS;
+    
+    private KeyBoard keyboard;
+    private MouseInput mouseinput;
+    
+    public Ventana(){
+        setTitle("Asteroides");
+        setSize(Constantes.WIDTH, Constantes.HEIGHT);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        
+        canvas = new Canvas();
+        keyboard = new KeyBoard();
+        
+        canvas.setPreferredSize(new Dimension(Constantes.WIDTH, Constantes.HEIGHT));
+        canvas.setMaximumSize(new Dimension(Constantes.WIDTH, Constantes.HEIGHT));
+        canvas.setMinimumSize(new Dimension(Constantes.WIDTH, Constantes.HEIGHT));
+        canvas.setFocusable(true);
+        
+        add(canvas);
+        canvas.addKeyListener(keyboard);´
+        canvas.addMouseListener(mouseinput);
+        canvas.addMouseMotionListener(mouseinput);
+        setVisible(true);
+    }
+    
+    public static void main(String[] args){
+        new Ventana().start();
+    }
+    
+    private void actualizar(){
+    	keyboard.update();
+        EstadoBase.getCurrentState().update();
+    }
+    
+    private void dibujar(){
+        bs = canvas.getBufferStrategy();
+        
+        if(bs == null){
+            canvas.createBufferStrategy(3);
+            return;
+        }
+        
+        g = bs.getDrawGraphics();
+        
+        //----------DIBUJO---------------------
+        
+        g.setColor(Color.BLACK);
+        
+        g.fillRect(0, 0, Constantes.WIDTH, Constantes.HEIGHT);
+        
+        EstadoBase.getCurrentState().draw(g);
+        
+        g.drawString(""+AVERAGEFPS, 10, 20);
+        
+        //-------------------------------------
+        g.dispose();
+        bs.show();
+    }
+    
+    private void init(){
+        Assets.init();
+        EstadoBase.changeState(new MenuState());
+    }
+    
+    @Override
+    public void run(){
+        long now = 0;
+        long lastTime = System.nanoTime();
+        int frames = 0;
+        long time = 0;
+        init();
+        
+        while(running){
+           now = System.nanoTime();
+           delta +=(now - lastTime)/TARGETTIME;
+           time += (now - lastTime);
+           lastTime = now;
+           
+           if(delta >= 1){
+               actualizar();
+               dibujar();
+               delta--;
+               frames++;
+           }
+           if(time >= nanosegundo){
+               AVERAGEFPS = frames;
+               frames = 0;
+               time = 0;
+               
+           }
+        }
+        
+        stop();
+    }
+    
+    private void start(){
+        thread = new Thread(this);
+        thread.start();
+        running = true;
+    }
+    
+    private void stop(){
+        try{
+            thread.join();
+            running = false;
+        }catch(InterruptedException e){
+            e.printStackTrace(System.out);
+        }
+    }
+}

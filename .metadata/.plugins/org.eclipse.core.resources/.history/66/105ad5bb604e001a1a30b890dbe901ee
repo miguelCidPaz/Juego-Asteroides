@@ -1,0 +1,146 @@
+package Graficos;
+
+import java.awt.Font;
+import java.awt.image.BufferedImage;
+
+import javax.sound.sampled.Clip;
+
+/**
+ *
+ * @author migue
+ */
+public class Assets {
+	public static boolean loaded = false;
+	public static float count = 0;
+	public static float MAX_COUNT = 46;
+	
+	
+	//Strings naves
+    private static String rutaPlayer = "/naves/player.png";
+    private static String rutaUfo = "/naves/ufo.png";
+    
+    //Strings efectos
+    private static String rutaPropulsion = "/efectos/fire08.png";
+    
+    //Strings lasers
+    private static String rutalaserazul = "/lasers/laserAzul.png";
+    private static String rutalaserrojo = "/lasers/laserRojo.png";
+    private static String rutalaserverde = "/lasers/laserVerde.png";
+        
+    //Naves
+    public static BufferedImage player;
+    public static BufferedImage UFO;
+    
+    //Efectos
+    public static BufferedImage propulsion;
+    public static BufferedImage[]explosion = new BufferedImage[9];
+    
+    //Lasers
+    public static BufferedImage laserazul;
+    public static BufferedImage laserrojo;
+    public static BufferedImage laserverde;
+    
+    //Meteoros
+    public static BufferedImage[]grandes = new BufferedImage[4];
+    public static BufferedImage[]medianos = new BufferedImage[2];
+    public static BufferedImage[]pequeños = new BufferedImage[2];
+    public static BufferedImage[]enanos = new BufferedImage[2];
+    
+    //otros
+    public static BufferedImage[]numeros = new BufferedImage[11];
+    public static BufferedImage vida;
+    public static Font fuentegrande;
+    public static Font fuentemediana;
+    
+    //ui
+    public static BufferedImage blueBtn;
+    public static BufferedImage greyBtn;
+    
+    //sonidos
+    public static Clip backgroundMusic, sonidoexpl, playerLoose, playerShoot, ufoShoot;
+    
+    public static void init(){
+    	
+    	//naves
+        player = Loader.ImageLoader(rutaPlayer);
+        UFO = Loader.ImageLoader(rutaUfo);
+        
+        //Propulsion
+        propulsion = Loader.ImageLoader(rutaPropulsion);
+        
+        //Laser
+        laserazul = Loader.ImageLoader(rutalaserazul);
+        laserrojo = Loader.ImageLoader(rutalaserrojo);
+        laserverde = Loader.ImageLoader(rutalaserverde);
+        
+        //Vida
+        vida = Loader.ImageLoader("/otros/life.png");
+        
+        //fuente
+        fuentegrande = Loader.loadFont("/fuentes/future.ttf", 42);
+        fuentemediana = Loader.loadFont("/fuentes/future.ttf", 20);
+        
+        //sonidos
+        backgroundMusic = Loader.loadSound("/sonidos/backgroundMusic.wav");
+        sonidoexpl = Loader.loadSound("/sonidos/explosion.wav");
+        playerLoose = Loader.loadSound("/sonidos/playerLoose.wav");
+        playerShoot = Loader.loadSound("/sonidos/playerShoot.wav");
+        ufoShoot = Loader.loadSound("/sonidos/ufoShoot.wav");
+        
+        //ui
+        greyBtn = Loader.ImageLoader("/UI/botonGris.png");
+        blueBtn = Loader.ImageLoader("/UI/botonAzul.png");
+        
+        //Meteoros
+        for(int i = 0 ; i < grandes.length ; i++ ) {
+        	grandes[i] = Loader.ImageLoader("/meteoros/Grande"+(i+1)+".png");
+        	System.out.println("/meteoros/Grande"+(i+1)+".png");
+        }
+        for(int i = 0 ; i < medianos.length ; i++ ) {
+        	medianos[i] = Loader.ImageLoader("/meteoros/Mediano"+(i+1)+".png");
+        	System.out.println("meteoros/Mediano"+(i+1)+".png");
+        }
+        for(int i = 0 ; i < pequeños.length ; i++ ) {
+        	pequeños[i] = Loader.ImageLoader("/meteoros/Pequeño"+(i+1)+".png");
+        	System.out.println("meteoros/Pequeño"+(i+1)+".png");
+        }
+        for(int i = 0 ; i < enanos.length ; i++ ) {
+        	enanos[i] = Loader.ImageLoader("/meteoros/Enano"+(i+1)+".png");
+        	System.out.println("meteoros/Enano"+(i+1)+".png");
+        }
+        
+        //Explosion
+        for(int i = 0 ; i <explosion.length ; i++) {
+        	explosion[i] = Loader.ImageLoader("/efectos/"+(i)+".png");
+        	System.out.println("/efectos/"+(i)+".png");
+        }
+        
+        //Numeros
+        for(int i = 0 ; i < numeros.length ; i++) {
+        	numeros[i] = Loader.ImageLoader("/numeros/"+(i)+".png");
+        }
+        
+       loaded = true; 
+       
+    }
+    
+    
+    
+    public static BufferedImage loadImage(String ruta) {
+    	count ++;
+    	return Loader.ImageLoader(ruta);
+    }
+    
+    public static Font loadFont(String ruta, int tamaño) {
+    	count++;
+    	return Loader.loadFont(ruta, tamaño)
+    }
+    
+    public static Clip loadSound(String ruta) {
+    	count ++;
+    	return Loader.loadSound(ruta);
+    }
+    
+    
+    
+}

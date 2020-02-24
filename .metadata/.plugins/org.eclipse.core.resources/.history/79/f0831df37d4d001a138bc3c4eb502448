@@ -1,0 +1,40 @@
+package UI;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import Input.MouseInput;
+
+public class Boton {
+	
+	private BufferedImage mouseOutImg;
+	private BufferedImage mouseInImg;
+	private boolean mouseIn;
+	private Rectangle boundingBox;
+	private Action action;
+	private String text;
+	
+	public Boton(
+			
+			BufferedImage mouseOutImg,
+			BufferedImage mouseInImg,
+			int x, int y,
+			String text,
+			Action action
+			
+			) {
+		
+		this.mouseInImg=mouseInImg;
+		this.mouseOutImg=mouseOutImg;
+		this.text=text;
+		boundingBox = new Rectangle(x,y, mouseInImg.getWidth(), mouseInImg.getHeight());
+		this.action=action;
+		
+	}
+	
+	public void update() {
+		if(boundingBox.contains(MouseInput.X, MouseInput.Y)) {
+			
+		}
+	}
+	
+}

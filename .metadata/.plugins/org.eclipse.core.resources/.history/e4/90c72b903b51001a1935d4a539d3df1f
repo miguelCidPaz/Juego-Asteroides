@@ -1,0 +1,65 @@
+package ObjetosdeJuego;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
+import Estados.GameState;
+import maths.Vector2D;
+
+public class Meteoro extends ObjetosMoviles {
+	
+	private Tamaño tamaño;
+
+	public Meteoro(Vector2D position, Vector2D velocidad, double maxVel, BufferedImage texture, GameState gamestate, Tamaño tamaño) {
+		super(position, velocidad, maxVel, texture, gamestate);
+		this.tamaño = tamaño;
+		this.velocidad = velocidad.scale(maxVel);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update(float dt) {
+		// TODO Auto-generated method stub
+		position = position.add(velocidad);
+		
+		if(position.getX() > Constantes.WIDTH) {
+			position.setX(0);
+		}
+		if(position.getY() > Constantes.HEIGHT) {
+			position.setY(0);
+		}
+		
+		if(position.getX() < 0) {
+			position.setX(Constantes.WIDTH);
+		}
+		if(position.getY() < 0) {
+			position.setY(Constantes.HEIGHT);
+		}
+		
+		angulo += Constantes.DELTAANGLE/2;
+		
+	}
+	
+	@Override
+	public void Destruir() {
+		gamestate.dividirMeteoros(this);
+		gamestate.addScore(Constantes.METEORO_SCORE,position);
+		super.Destruir();
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		Graphics2D g2d = (Graphics2D)g;
+		at = AffineTransform.getTranslateInstance(position.getX(), position.getY());
+		at.rotate(angulo, width/2, height/2);
+		g2d.drawImage(texture, at, null);
+	}
+	
+	public Tamaño getTamaño() {
+		return tamaño;
+	}
+
+}

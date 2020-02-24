@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="maths.Vector2D"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+<fullyQualifiedTypeName name="Input.KeyBoard"/>
+<fullyQualifiedTypeName name="Principal.Ventana"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Estados.GameState"/>
+<fullyQualifiedTypeName name="java.awt.RenderingHints"/>
+<fullyQualifiedTypeName name="Principal.Constantes"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.Tamaño"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.Meteoro"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.ObjetosMoviles"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.Ufo"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="java.awt.FontFormatException"/>
+<fullyQualifiedTypeName name="java.awt.AlphaComposite"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.Mensajes"/>
+<fullyQualifiedTypeName name="javax.sound.sampled.AudioSystem"/>
+<fullyQualifiedTypeName name="javax.sound.sampled.FloatControl.Type"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="Estados.MenuState"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="Graficos.Loader"/>
+<fullyQualifiedTypeName name="Estados.LoadingState"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="Graficos.Assets"/>
+<fullyQualifiedTypeName name="Graficos.Text"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.Constantes"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="io.JSONParser"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.awt.geom.AffineTransform"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.TiposPowerUps"/>
+<fullyQualifiedTypeName name="UI.Action"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="ObjetosdeJuego.PowerUp"/>
+</qualifiedTypeNameHistroy>
